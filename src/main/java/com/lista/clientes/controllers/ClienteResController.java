@@ -47,7 +47,7 @@ public class ClienteResController {
 	public Cliente create(@RequestBody Cliente cliente) {
 		return clienteService.save(cliente);
 	}
-	
+	        
 	
 	@PutMapping("/clientes/{id}")
 	@ResponseStatus(HttpStatus.CREATED)
@@ -65,7 +65,7 @@ public class ClienteResController {
 	
 	
 	
-	@DeleteMapping("/clientes{id}")
+	@DeleteMapping("/clientes/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable Long id) {
 		clienteService.delete(id);
