@@ -234,7 +234,7 @@ public class ClienteResController {
 
 	}
 
-	@GetMapping("/uploads/img/{nombreFoto: .+}")
+	@GetMapping("/imagenes/img/{nombreFoto: .+}")
 	public ResponseEntity<Resource> verFoto(@PathVariable String nombreFoto) {
 
 		Resource recurso = null;
