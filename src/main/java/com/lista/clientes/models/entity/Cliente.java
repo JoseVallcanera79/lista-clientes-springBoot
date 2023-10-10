@@ -1,6 +1,7 @@
 package com.lista.clientes.models.entity;
 
 import java.io.Serializable;
+
 import java.util.Date;
 
 import jakarta.persistence.Column;
@@ -8,12 +9,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 
@@ -34,17 +35,20 @@ public class Cliente implements Serializable{
     
     @NotEmpty(message = "No puede estar vacio")
     @Email(message = "el email tiene que tener un formato válido")
-    @Column(nullable=false, unique = true)
+    @Column(nullable=false, unique = false)
 	private String email;
 	
+    @NotNull(message= "No puede estar vacio")
 	@Column(name = "create_at")
 	@Temporal(TemporalType.DATE)
 	private Date createAt;
+	
+	
+	private String foto;
 
-	@PrePersist
-	public void prePersist() {
-		createAt = new Date();
-	}
+	/*
+	 * @PrePersist public void prePersist() { createAt = new Date(); }
+	 */
 	
 	
 	
@@ -89,6 +93,17 @@ public class Cliente implements Serializable{
 	}
 	
 	
+	public String getFoto() {
+		return foto;
+	}
+
+
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+
+
 	private static final long serialVersionUID = 1L;
 
 
