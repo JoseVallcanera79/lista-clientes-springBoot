@@ -2,6 +2,7 @@ package com.lista.clientes.models.services;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -10,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.lista.clientes.models.dao.IClienteDao;
 import com.lista.clientes.models.entity.Cliente;
+import com.lista.clientes.models.entity.Region;
 
 @Service
 public class ClienteServiceImpl implements IClienteService{
@@ -55,6 +57,13 @@ public class ClienteServiceImpl implements IClienteService{
 		clienteDao.deleteById(id);
 				
 		
+	}
+
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<Region> findAllRegiones() {
+		return clienteDao.findAllRegiones();
 	}
 
 
