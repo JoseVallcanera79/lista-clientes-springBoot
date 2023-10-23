@@ -234,19 +234,22 @@ public class ClienteResController {
 
 	}
 
-	@GetMapping("/imagenes/img/{nombreFoto: .+}")
+	@GetMapping("/imagenes/img/{nombreFoto:.+}")
 	public ResponseEntity<Resource> verFoto(@PathVariable String nombreFoto) {
 
 		Resource recurso = null;
 
 		try {
+			
 			recurso = uploadService.cargar(nombreFoto);
+			
 		} catch (MalformedURLException e) {
 
 			e.printStackTrace();
 		}
 
 		HttpHeaders cabecera = new HttpHeaders();
+		
 		cabecera.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename() + "\"");
 
 		return new ResponseEntity<Resource>(recurso, cabecera, HttpStatus.OK);
